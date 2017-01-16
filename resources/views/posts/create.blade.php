@@ -15,7 +15,7 @@
                <hr>
            {!! Form::open(['route' => 'posts.store', 'data-parsley-validate']) !!}
                 {{ Form::label('title', 'Заголовок:') }}
-                {{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'Minlength' => '3')) }}
+                {{ Form::text('title', null, array('class' => 'form-control')) }}
 <br/>
            {{ Form::label('body', 'Введите статью:') }}
            {{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}

@@ -16,3 +16,9 @@
       Route::get('/kontakty.html', 'PagesController@getContact');
 
       Route::resource('posts', 'PostController');
+
+      Route::group(['middleware' => ['web']], function () {
+
+          Route::resource('posts', 'PostController');
+
+      });
