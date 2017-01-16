@@ -14,9 +14,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Главная <span class="sr-only">(current)</span></a></li>
-                <li><a href="/about.html">О компании</a></li>
-                <li><a href="/kontakty.html">Контакты</a></li>
+                <li class="{{ Request::is('/') ? "active" : "" }}"><a href="/">Главная</a></li>
+                <li class="{{ Request::is('about.html') ? "active" : "" }}"><a href="/about.html">О компании</a></li>
+                <li class="{{ Request::is('kontakty.html') ? "active" : "" }}"><a href="/kontakty.html">Контакты</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
