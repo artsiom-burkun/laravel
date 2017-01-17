@@ -81,7 +81,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Найти запись в бд
+        $post = Post::find($id);
+        return view('posts.edit')->withPost($post);
     }
 
     /**
