@@ -95,7 +95,24 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validate
+        $this ->validate($request, array (
+            'title' => 'required',
+            'body' => 'required'
+        ));
+
+
+        //сохраним данные
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post -> save();
+
+
+        Session::flash('success', 'Статья успешно отредактирована');
+
+
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
