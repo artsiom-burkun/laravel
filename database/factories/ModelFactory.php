@@ -21,3 +21,15 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+
+$factory->define(\App\Post::class, function(Faker\Generator $faker){
+    return[
+        'title' => $faker->words(rand(4, 10), true),
+        'body' => $faker->text,
+        'slug' => $faker->words(rand(3, 7), true),
+        'created_at' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get()),
+        'updated_at' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get())
+    ];
+});
+

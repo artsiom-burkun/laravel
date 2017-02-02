@@ -17,7 +17,7 @@ class PostController extends Controller
     {
         //
         // return view
-        $posts = Post::orderby('id', 'desc')->paginate(2);
+        $posts = Post::orderby('id', 'desc')->paginate(5);
 
         return view('posts.index')->withPosts($posts);
 
@@ -44,7 +44,8 @@ class PostController extends Controller
         // validate
         $this ->validate($request, array (
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            //'slug' => 'required'
         ));
 
 
@@ -53,6 +54,8 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;
+        ($request->slug == '') ? $post->slug = str_slug($request->title) : $post->slug = $request->slug;
+
 
         Session::flash('success', 'Статья успешно добавлена');
 
@@ -106,6 +109,9 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+
+        ($request->slug == '') ? $post->slug = str_slug($request->title) : $post->slug = $request->slug;
+
         $post -> save();
 
 

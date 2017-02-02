@@ -15,6 +15,9 @@
         <div class="col-md-8">
             {{ Form::label('title', 'Заголовок') }}
             {{ Form::text('title', null, ["class" => 'form-control']) }}
+            <br/>
+            {{ Form::label('slug', 'alias') }}
+            {{ Form::text('slug', null, ["class" => 'form-control']) }}
                <br/>
             {{ Form::label('body', 'Содержание статьи') }}
             {{ Form::textarea('body', null, ["class" => 'form-control']) }}

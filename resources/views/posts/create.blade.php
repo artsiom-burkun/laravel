@@ -17,6 +17,11 @@
                 {{ Form::label('title', 'Заголовок:') }}
                 {{ Form::text('title', null, array('class' => 'form-control')) }}
 <br/>
+           {{ Form::label('slug', 'alias:') }}
+           {{ Form::text('slug', null, ['class' => 'form-control']) }}
+           <br/>
+
+
            {{ Form::label('body', 'Введите статью:') }}
            {{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
 
