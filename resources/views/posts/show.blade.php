@@ -24,7 +24,7 @@
             </dl>
 
             <p>Ссылка:</p>
-            <p><a href="{{ url($post->slug) }}">{{ url($post->slug) }}</a></p>
+            <p><a href="{{ url('blog/'.$post->slug) }}">{{ url('blog/'.$post->slug) }}</a></p>
 <hr>
 
             <div class="row">

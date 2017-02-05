@@ -26,7 +26,7 @@
         <div class="post">
             <h3>{{ $post->title }}</h3>
             <p>{{ substr($post->body, 0, 100) }} {{ strlen($post->body > 100)? "..." : "" }}</p>
-            <a href="#" class="btn btn-info pull-right">Читать далее...</a>
+            <a href="{{ url('blog/'.$post->slug) }}" class="btn btn-info pull-right">Читать далее...</a>
             <br/><br/>
         </div>
         <hr>

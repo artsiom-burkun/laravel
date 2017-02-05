@@ -19,6 +19,9 @@
 
       Route::group(['middleware' => ['web']], function () {
 
+          Route::get('/blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle']);
+
+
           Route::resource('posts', 'PostController');
 
       });
