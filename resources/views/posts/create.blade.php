@@ -15,7 +15,7 @@
                <hr>
            {!! Form::open(['route' => 'posts.store', 'data-parsley-validate']) !!}
                 {{ Form::label('title', 'Заголовок:') }}
-                {{ Form::text('title', null, array('class' => 'form-control')) }}
+                {{ Form::text('title', null, array('class' => 'form-control', 'required' => '')) }}
 <br/>
            {{ Form::label('slug', 'alias:') }}
            {{ Form::text('slug', null, ['class' => 'form-control']) }}

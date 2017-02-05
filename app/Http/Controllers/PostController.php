@@ -99,10 +99,19 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         // validate
-        $this ->validate($request, array (
-            'title' => 'required',
-            'body' => 'required'
-        ));
+        $post = Post::find($id);
+        if ($request->input('slug') == $post->slug) {
+            $this ->validate($request, array (
+                'title' => 'required',
+                'body' => 'required'
+            ));
+        }else {
+            $this ->validate($request, array (
+                'title' => 'required',
+                'slug' => 'required|alpha_dash|min:5|max:25|unique:posts,slug',
+                'body' => 'required'
+            ));
+        }
 
 
         //сохраним данные
@@ -111,13 +120,10 @@ class PostController extends Controller
         $post->body = $request->input('body');
 
         ($request->slug == '') ? $post->slug = str_slug($request->title) : $post->slug = $request->slug;
-
         $post -> save();
 
 
         Session::flash('success', 'Статья успешно отредактирована');
-
-
         return redirect()->route('posts.show', $post->id);
     }
 
