@@ -18,7 +18,7 @@ class PostController extends Controller
         //
         // return view
         $posts = Post::orderby('id', 'desc')->paginate(5);
-
+        Carbon::setLocale('ru');
         return view('posts.index')->withPosts($posts);
 
     }

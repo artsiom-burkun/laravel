@@ -19,6 +19,7 @@
 
       Route::group(['middleware' => ['web']], function () {
 
+          Route::get('/blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
           Route::get('/blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle']);
 
 
