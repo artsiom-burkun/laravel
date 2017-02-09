@@ -3,7 +3,6 @@
 @section ('title', 'Просмотреть все записи')
 
 @section('content')
-
     <div class="row">
 
         <div class="col-md-9">

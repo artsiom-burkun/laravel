@@ -13,10 +13,10 @@
     <div class="col-md-6 col-md-offset-3">
         <h1>Регистрация</h1>
         <hr>
-        {!! Form::open(['route' => 'posts.store', 'data-parsley-validate']) !!}
+        {!! Form::open() !!}
 
-        {{ Form::label('login', 'Введите логин:') }}
-        {{ Form::email('login', null, ['class' => 'form-control', 'required' => '']) }}
+        {{ Form::label('name', 'Введите логин:') }}
+        {{ Form::text('name', null, ['class' => 'form-control', 'required' => '']) }}
         <br/>
         {{ Form::label('email', 'Ваш Email') }}
         {{ Form::email('email', null, ['class' => 'form-control', 'required' => '']) }}
