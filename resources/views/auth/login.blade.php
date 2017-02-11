@@ -11,9 +11,9 @@
 
 @section('content')
     <div class="col-md-6 col-md-offset-3">
-        <h1>Создать новую запись</h1>
+        <h1>Войти в учетную запись</h1>
         <hr>
-        {!! Form::open(['route' => 'posts.store', 'data-parsley-validate']) !!}
+        {!! Form::open(['route' => 'login', 'data-parsley-validate']) !!}
 
         {{ Form::label('email', 'Ваш Email') }}
         {{ Form::email('email', null, ['class' => 'form-control', 'required' => '']) }}
@@ -27,6 +27,6 @@
 
         {!! Form::close() !!}
 
-
+        <p><a href="/password/reset">Забыли пароль?</a></p>
     </div>
 @endsection
