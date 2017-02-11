@@ -6,11 +6,6 @@
 @include('partials._nav')
 
 <div class="container">
-    {{ Auth::check() ? "Уже тут" : "Еще нет" }}
-    {!! Form::open(['route' => 'logout', 'method' => 'POST']) !!}
-    {{ Form::submit('Выйти', array('class' => 'btn btn-success', 'style' => 'margin-top: 20px;')) }}
-    {!! Form::close() !!}
-
     @include('partials._messages')
     @yield('content')
 </div>

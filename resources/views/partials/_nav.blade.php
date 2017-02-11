@@ -19,18 +19,52 @@
                 <li class="{{ Request::is('about.html') ? "active" : "" }}"><a href="/about.html">О компании</a></li>
                 <li class="{{ Request::is('kontakty.html') ? "active" : "" }}"><a href="/kontakty.html">Контакты</a></li>
             </ul>
+            @if (Auth::check())
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Мой аккаунт <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Привет, {{ Auth::user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="/posts">Мои записи</a></li>
+                        <li><a href="/posts/create">Создать новую запись</a></li>
+                        <li><a href="#">Редактировать профиль</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li>
+                            {!! Form::open(['route' => 'logout', 'method' => 'POST']) !!}
+                            {{ Form::submit('Выйти', ['class' => 'btn btn-link', 'style' => 'padding-left: 20px;']) }}
+                            {!! Form::close() !!}
+                        </li>
                     </ul>
                 </li>
             </ul>
+            @else
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Войти / Регистрация<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            {!! Form::open(['route' => 'login', 'data-parsley-validate', 'style' => 'padding: 20px 5px 5px 20px; min-width: 250px;']) !!}
+
+                            {{ Form::label('email', 'Ваш Email') }}
+                            {{ Form::email('email', null, ['class' => 'form-control', 'required' => '']) }}
+                            <br/>
+                            {{ Form::label('password', 'Введите пароль:') }}
+                            {{ Form::password('password', ['class' => 'form-control', 'required' => '']) }}
+                            <br/>
+                            {{ Form::checkbox('remember') }} {{ Form::label('remember', 'Запомнить?') }}
+                            <br/>
+                            {{ Form::submit('Войти', array('class' => 'btn btn-success', 'style' => 'margin-top: 20px;')) }}
+
+                            {!! Form::close() !!}
+
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/password/reset">Забыли пароль?</a></li>
+                            <li><a href="/register">Зарегистрироваться</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            @endif
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
