@@ -49,7 +49,7 @@
                             <br/>
                             {{ Form::label('password', 'Введите пароль:') }}
                             {{ Form::password('password', ['class' => 'form-control', 'required' => '']) }}
-                            <br/>
+                            
                             {{ Form::checkbox('remember') }} {{ Form::label('remember', 'Запомнить?') }}
                             <br/>
                             {{ Form::submit('Войти', array('class' => 'btn btn-success', 'style' => 'margin-top: 20px;')) }}
