@@ -1,6 +1,8 @@
 @extends('main')
 
-@section ('title', "$post->title")
+@section ('title')
+$post->title
+@endsection
 
 @section('content')
     <div class="row">

@@ -1,6 +1,8 @@
 @extends('main')
 
-@section ('title', 'Просмотреть все записи')
+@section ('title')
+Просмотреть все записи
+@endsection
 
 @section('content')
     <div class="row">

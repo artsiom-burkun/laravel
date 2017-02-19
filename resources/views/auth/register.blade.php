@@ -1,6 +1,8 @@
 @extends('main')
 
-@section('title', 'Зарегистрироваться')
+@section('title')
+Зарегистрироваться
+@endsection
 @section('stylesheet')
     {!! Html::style('/css/parsley.css') !!}
 @endsection

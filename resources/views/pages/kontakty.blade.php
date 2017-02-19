@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('title')
-    Блог на ларавел
+    Блог на ларавел - Контакты
 @endsection
 
 

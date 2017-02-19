@@ -1,8 +1,15 @@
 @extends('main')
 
-@section('title', 'Редактировать запись')
+@section('title')
+Редактировать запись
+@endsection
+
 @section('stylesheet')
     {!! Html::style('/css/parsley.css') !!}
+@endsection
+
+@section('scripts')
+    <script src="/js/parsley.min.js"></script>
 @endsection
 
 @section('content')

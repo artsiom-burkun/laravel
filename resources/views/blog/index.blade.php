@@ -1,7 +1,8 @@
 @extends('main')
 
-@section ('title', "Блог")
-
+@section ('title')
+Блог
+@endsection
 @section('content')
 
     <div class="row">

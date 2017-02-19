@@ -1,13 +1,17 @@
 @extends('main')
 
-@section('title', 'Войти в учетную запись')
+@section('title')
+Войти в учетную запись
+@endsection
+
 @section('stylesheet')
     {!! Html::style('/css/parsley.css') !!}
 @endsection
 
 
-@section('scripts', '<script src="/js/parsley.min.js"></script>')
-
+@section('scripts')
+<script src="/js/parsley.min.js"></script>
+@endsection
 
 @section('content')
     <div class="col-md-6 col-md-offset-3">

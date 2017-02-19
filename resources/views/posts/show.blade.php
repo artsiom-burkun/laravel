@@ -1,6 +1,8 @@
 @extends('main')
 
-@section ('title', 'Просмотреть запись')
+@section ('title')
+Просмотреть запись
+@endsection
 
 @section('content')
 
