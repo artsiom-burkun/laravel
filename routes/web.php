@@ -37,4 +37,6 @@
           // Блог как администратор
           Route::resource('posts', 'PostController');
 
+          // Категории
+          Route::resource('categories', 'CategoryController', ['except' => ['create']]);
       });
