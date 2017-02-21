@@ -25,11 +25,18 @@
            {{ Form::text('slug', null, ['class' => 'form-control']) }}
            <br/>
 
+           {{ Form::label('category_id', 'Категория:') }}
+           <select class="form-control" name='category_id'>
+               @foreach($categories as $category)
+               <option value="{{ $category->id }}" >{{ $category->name }}</option>
+               @endforeach
+           </select>
+           <br/>
 
            {{ Form::label('body', 'Введите статью:') }}
            {{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
 
-           {{ Form::submit('Сделать запись', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px;')) }}
+           {{ Form::submit('Сделать запись', array('class' => 'btn btn-success btn-lg', 'style' => 'margin-top: 20px;')) }}
 
            {!! Form::close() !!}
 

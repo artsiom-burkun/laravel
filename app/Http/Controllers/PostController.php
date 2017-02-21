@@ -36,7 +36,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create');
+        return view('posts.create')->withCategories($categories);
     }
 
     /**
@@ -51,6 +51,7 @@ class PostController extends Controller
         $this ->validate($request, array (
             'title' => 'required',
             'body' => 'required',
+            'category_id' => 'required',
             //'slug' => 'required'
         ));
 
@@ -60,6 +61,7 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;
+        $post->category_id = $request->category_id;
         ($request->slug == '') ? $post->slug = str_slug($request->title) : $post->slug = $request->slug;
 
 
@@ -92,7 +94,12 @@ class PostController extends Controller
     {
         // Найти запись в бд
         $post = Post::find($id);
-        return view('posts.edit')->withPost($post);
+        $categories = Category::all();
+        $cats = [];
+        foreach ($categories as $category) {
+            $cats[$category->id] = $category->name;
+        }
+        return view('posts.edit')->withPost($post)->withCategories($cats);
     }
 
     /**
@@ -109,13 +116,15 @@ class PostController extends Controller
         if ($request->input('slug') == $post->slug) {
             $this ->validate($request, array (
                 'title' => 'required',
-                'body' => 'required'
+                'body' => 'required',
+                'category_id' => 'required'
             ));
         }else {
             $this ->validate($request, array (
                 'title' => 'required',
                 'slug' => 'required|alpha_dash|min:5|max:25|unique:posts,slug',
-                'body' => 'required'
+                'body' => 'required',
+                'category_id' => 'required'
             ));
         }
 
@@ -124,6 +133,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        $post->category_id = $request->input('category_id');
 
         ($request->slug == '') ? $post->slug = str_slug($request->title) : $post->slug = $request->slug;
         $post -> save();

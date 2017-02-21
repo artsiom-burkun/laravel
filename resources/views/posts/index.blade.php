@@ -34,7 +34,7 @@
                     <th>Заголовок</th>
                     <th>Содержание</th>
                     <th>Дата создания</th>
-                    <th>Дата редактирования</th>
+                    <th>Действия</th>
                 </thead>
                 <tbody>
                      @foreach ($posts as $post)
@@ -43,8 +43,8 @@
                              <td>{{ $post->title }}</td>
                              <td>{{ $post->body}}  {{ strlen($post->body) > 50 ? "..." : "" }}</td>
                              <td>{{ $post->created_at }}</td>
-                             <td>{!! Html::linkRoute('posts.show', 'Просмотреть', array($post->id), array('class' => 'btn btn-default btn-block btn-sm')) !!}
-                                 {!! Html::linkRoute('posts.edit', 'Редактировать', array($post->id), array('class' => 'btn btn-primary btn-block btn-sm')) !!}
+                             <td>{!! Html::linkRoute('posts.show', 'Просмотреть', array($post->id), array('class' => 'btn btn-default')) !!}
+                                 {!! Html::linkRoute('posts.edit', 'Редактировать', array($post->id), array('class' => 'btn btn-primary')) !!}
                              </td>
                          </tr>
                      @endforeach

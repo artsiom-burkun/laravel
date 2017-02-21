@@ -26,7 +26,10 @@
             <br/>
             {{ Form::label('slug', 'alias') }}
             {{ Form::text('slug', null, ["class" => 'form-control']) }}
-               <br/>
+            <br/>
+            {{ Form::label('category_id', 'Категория:') }}
+            {{ Form::select('category_id', $categories, null, ["class" => 'form-control']) }}
+            <br/>
             {{ Form::label('body', 'Содержание статьи') }}
             {{ Form::textarea('body', null, ["class" => 'form-control']) }}
 
@@ -53,7 +56,7 @@
                     </div>
 
                     <div class="col-sm-6">
-                        {!! Html::linkRoute('posts.show', 'Назад', array($post->id), array('class' => 'btn btn-danger btn-block')) !!}
+                        {!! Html::linkRoute('posts.show', 'Назад', array($post->id), array('class' => 'btn btn-default btn-block')) !!}
                     </div>
 
                 </div>

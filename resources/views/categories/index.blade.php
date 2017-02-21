@@ -32,7 +32,7 @@
                     {!! Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'DELETE']) !!}
 
                     {!! Html::linkRoute('categories.edit', 'Редактировать', [$category->id], ['class' => 'btn btn-primary']) !!}
-                    
+
                     {!! Form::submit('Удалить', ['class' => 'btn btn-danger']) !!}
                     {!! Form::close() !!}
                 </td>
