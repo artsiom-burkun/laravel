@@ -29,8 +29,12 @@
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
                 <td>
-                    <a hre="/" class="btn btn-primary">Редактировать</a>
-                    <a hre="/" class="btn btn-danger">Удалить</a>
+                    {!! Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'DELETE']) !!}
+
+                    {!! Html::linkRoute('categories.edit', 'Редактировать', [$category->id], ['class' => 'btn btn-primary']) !!}
+                    
+                    {!! Form::submit('Удалить', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::close() !!}
                 </td>
             </tr>
             @endforeach
@@ -41,12 +45,14 @@
 
     </div>
     <div class="col-md-4">
+        <div class="jumbotron" style="padding: 20px;">
         <h3>Создать новую категорию</h3>
         {!! Form::open(['route' => 'categories.store', 'data-parsley-validate']) !!}
         {{ Form::label('name', 'Название категории:') }}
-        {{ Form::text('name', null, array('class' => 'form-control', 'required' => '')) }}
+        {{ Form::text('name', null, array('class' => 'form-control', 'required' => '', 'data-parsley-length' => '[2, 50]')) }}
         <br/>
         {{ Form::submit('Создать категорию', array('class' => 'btn btn-success')) }}
         {!! Form::close() !!}
+    </div>
     </div>
 @endsection

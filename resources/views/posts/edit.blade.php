@@ -15,6 +15,7 @@
 @section('content')
 
     <div class="row">
+
         {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
 
 

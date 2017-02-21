@@ -45,7 +45,7 @@ class CategoryController extends Controller
     {
         // validate
         $this ->validate($request, array (
-            'name' => 'required',
+            'name' => 'required|unique:categories|max:255|min:2',
         ));
 
 
@@ -80,7 +80,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('categories.edit')->withCategory($category);
     }
 
     /**
@@ -92,7 +93,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // валидация данных
+        $category = Category::find($id);
+        $this ->validate($request, array (
+                'name' => 'required'
+            ));
+
+        // сохранение данных
+        $category = Category::find($id);
+        $category->name = $request->input('name');
+        $category->save();
+
+        // флеш и редирект
+        Session::flash('success', 'Категория успешно отредактирована');
+        return redirect()->route('categories.index', $category->id);
     }
 
     /**
@@ -103,6 +117,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+
+        Session::flash('success', 'Категория успешно удалена');
+        return redirect()->route('categories.index');
     }
 }
