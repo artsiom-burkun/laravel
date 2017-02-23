@@ -27,6 +27,7 @@
                         <li><a href="/posts">Мои записи</a></li>
                         <li><a href="/posts/create">Создать новую запись</a></li>
                         <li><a href="{{ route('categories.index') }}">Категории</a></li>
+                        <li><a href="{{ route('tags.index') }}">Теги</a></li>
                         <li><a href="#">Редактировать профиль</a></li>
                         <li role="separator" class="divider"></li>
                         <li>

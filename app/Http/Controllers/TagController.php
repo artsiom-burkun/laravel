@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
+use App\Tag;
 use Session;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
 
     public function __construct()
@@ -21,8 +21,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('categories.index')->withCategories($categories);
+        $tags = Tag::all();
+        return view('tags.index')->withTags($tags);
     }
 
     /**
@@ -45,20 +45,20 @@ class CategoryController extends Controller
     {
         // validate
         $this ->validate($request, array (
-            'name' => 'required|unique:categories|max:255|min:2',
+            'name' => 'required|unique:tags|max:255|min:2',
         ));
 
 
         //store
 
-        $category = new Category;
-        $category->name = $request->name;
+        $tag = new Tag;
+        $tag->name = $request->name;
 
-        Session::flash('success', 'Категория успешно добавлена');
+        Session::flash('success', 'Тег добавлен');
 
-        $category -> save();
+        $tag -> save();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -80,8 +80,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return view('categories.edit')->withCategory($category);
+        $tag = Tag::find($id);
+        return view('tags.edit')->withTag($tag);
     }
 
     /**
@@ -99,13 +99,13 @@ class CategoryController extends Controller
             ));
 
         // сохранение данных
-        $category = Category::find($id);
-        $category->name = $request->input('name');
-        $category->save();
+        $tag = Tag::find($id);
+        $tag->name = $request->input('name');
+        $tag->save();
 
         // флеш и редирект
-        Session::flash('success', 'Категория успешно отредактирована');
-        return redirect()->route('categories.index');
+        Session::flash('success', 'Тег изменен');
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -116,10 +116,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
+        $tag = Tag::find($id);
+        $tag->delete();
 
-        Session::flash('success', 'Категория успешно удалена');
-        return redirect()->route('categories.index');
+        Session::flash('success', 'Тег удален');
+        return redirect()->route('tags.index');
     }
 }

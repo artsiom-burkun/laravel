@@ -39,4 +39,7 @@
 
           // Категории
           Route::resource('categories', 'CategoryController', ['except' => ['create']]);
+
+          // Теги
+          Route::resource('tags', 'TagController', ['except' => ['create']]);
       });
