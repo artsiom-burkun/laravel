@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Session;
 
 class PostController extends Controller
@@ -36,7 +37,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create')->withCategories($categories);
+        $tags = Tag::all();
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -47,6 +49,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         // validate
         $this ->validate($request, array (
             'title' => 'required',
@@ -64,11 +67,11 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
         ($request->slug == '') ? $post->slug = str_slug($request->title) : $post->slug = $request->slug;
 
-
-        Session::flash('success', 'Статья успешно добавлена');
-
         $post -> save();
 
+        $post -> tags() -> sync($request->tags, false);
+
+        Session::flash('success', 'Статья успешно добавлена');
         return redirect()->route('posts.show', $post->id);
     }
 
@@ -94,12 +97,20 @@ class PostController extends Controller
     {
         // Найти запись в бд
         $post = Post::find($id);
+
         $categories = Category::all();
         $cats = [];
         foreach ($categories as $category) {
             $cats[$category->id] = $category->name;
         }
-        return view('posts.edit')->withPost($post)->withCategories($cats);
+
+        $tags = Tag::all();
+        $tags2 = [];
+        foreach ($tags as $tag) {
+            $tags2[$tag->id] = $tag->name;
+        }
+
+        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
     }
 
     /**
@@ -137,6 +148,12 @@ class PostController extends Controller
 
         ($request->slug == '') ? $post->slug = str_slug($request->title) : $post->slug = $request->slug;
         $post -> save();
+        if (isset($request->tags)) {
+            $post -> tags() -> sync($request->tags);
+        } else {
+            $post -> tags() -> sync([]);
+        }
+
 
 
         Session::flash('success', 'Статья успешно отредактирована');

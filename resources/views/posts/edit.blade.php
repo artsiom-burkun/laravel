@@ -6,10 +6,17 @@
 
 @section('stylesheet')
     {!! Html::style('/css/parsley.css') !!}
+    {!! Html::style('/css/select2.min.css') !!}
 @endsection
+
 
 @section('scripts')
     <script src="/js/parsley.min.js"></script>
+    <script src="/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(".multiple").select2();
+        $(".multiple").select2().val({!!  json_encode(  $post->tags()->allRelatedIds()  )  !!}).trigger('change');
+    </script>
 @endsection
 
 @section('content')
@@ -30,6 +37,9 @@
             {{ Form::label('category_id', 'Категория:') }}
             {{ Form::select('category_id', $categories, null, ["class" => 'form-control']) }}
             <br/>
+            {{ Form::label('tags', 'Теги:') }}
+            {{ Form::select('tags[]', $tags, null, ["class" => 'multiple form-control', 'multiple' => 'multiple']) }}
+            <br/><br/>
             {{ Form::label('body', 'Содержание статьи') }}
             {{ Form::textarea('body', null, ["class" => 'form-control']) }}
 

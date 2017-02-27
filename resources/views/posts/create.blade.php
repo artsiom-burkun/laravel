@@ -6,11 +6,17 @@
 
 @section('stylesheet')
     {!! Html::style('/css/parsley.css') !!}
+    {!! Html::style('/css/select2.min.css') !!}
 @endsection
 
 
 @section('scripts')
-<script src="/js/parsley.min.js"></script>
+    <script src="/js/parsley.min.js"></script>
+    <script src="/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $(".multiple").select2();
+    </script>
 @endsection
 
 @section('content')
@@ -31,6 +37,16 @@
                <option value="{{ $category->id }}" >{{ $category->name }}</option>
                @endforeach
            </select>
+           <br/>
+
+
+           {{ Form::label('tags', 'Тэги:') }}
+           <select class="multiple form-control" name='tags[]' multiple="multiple">
+               @foreach($tags as $tag)
+                   <option value="{{ $tag->id }}"> {{ $tag->name }} </option>
+               @endforeach
+           </select>
+           <br/>
            <br/>
 
            {{ Form::label('body', 'Введите статью:') }}

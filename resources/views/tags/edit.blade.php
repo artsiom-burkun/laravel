@@ -41,6 +41,8 @@
             {{ Form::text('name', null, array('class' => 'form-control', 'required' => '', 'data-parsley-length' => '[2, 50]')) }}
             <br/>
             {{ Form::submit('Сохранить изменения', array('class' => 'btn btn-warning')) }}
+            {!! Html::linkRoute('tags.index', 'Назад', null, ['class' => 'btn btn-default']) !!}
+
             {!! Form::close() !!}
         </div>
     </div>
