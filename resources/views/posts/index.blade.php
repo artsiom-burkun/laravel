@@ -12,7 +12,7 @@
         </div>
 
         <div class="col-md-3">
-            <a href="{{ route('posts.create') }}" class="btn btn-lg btn-block btn-primary">
+            <a href="{{ route('posts.create') }}" class="btn btn-lg btn-block btn-success">
                  Создать новую запись
             </a>
         </div>
@@ -34,7 +34,7 @@
                     <th>Заголовок</th>
                     <th>Содержание</th>
                     <th>Дата создания</th>
-                    <th>Действия</th>
+                    <th style="width: 35%">Действия</th>
                 </thead>
                 <tbody>
                      @foreach ($posts as $post)
@@ -43,8 +43,16 @@
                              <td>{{ $post->title }}</td>
                              <td>{{ $post->body}}  {{ strlen($post->body) > 50 ? "..." : "" }}</td>
                              <td>{{ $post->created_at }}</td>
-                             <td>{!! Html::linkRoute('posts.show', 'Просмотреть', array($post->id), array('class' => 'btn btn-default')) !!}
-                                 {!! Html::linkRoute('posts.edit', 'Редактировать', array($post->id), array('class' => 'btn btn-primary')) !!}
+                             <td>
+                                 {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
+
+                                 {!! Html::linkRoute('posts.show', 'Просмотреть', array($post->id), array('class' => 'btn btn-default')) !!}
+                                 {!! Html::linkRoute('posts.edit', 'Редактировать', array($post->id), array('class' => 'btn btn-warning')) !!}
+
+                                 {!! Form::submit('Удалить', ['class' => 'btn btn-danger']) !!}
+                                 {!! Form::close() !!}
+
+
                              </td>
                          </tr>
                      @endforeach

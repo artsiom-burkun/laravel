@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="col-sm-6">
-                        {!! Html::linkRoute('posts.show', 'Назад', array($post->id), array('class' => 'btn btn-default btn-block')) !!}
+                        {!! Html::linkRoute('posts.index', 'К списку статей', array($post->id), array('class' => 'btn btn-default btn-block')) !!}
                     </div>
 
                 </div>
