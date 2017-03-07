@@ -31,6 +31,7 @@
                 <td>
                     {!! Form::open(['route' => ['tags.destroy', $tag->id], 'method' => 'DELETE']) !!}
 
+                    {!! Html::linkRoute('tags.show', 'Просмотреть', [$tag->id], ['class' => 'btn btn-default']) !!}
                     {!! Html::linkRoute('tags.edit', 'Редактировать', [$tag->id], ['class' => 'btn btn-primary']) !!}
 
                     {!! Form::submit('Удалить', ['class' => 'btn btn-danger']) !!}

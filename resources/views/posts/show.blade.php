@@ -14,6 +14,7 @@
             @foreach($post->tags as $tag)
                 <span class="label label-default">{{ $tag->name }}</span>
             @endforeach
+            {!! Html::linkRoute('tags.index', 'К списку тегов', [],['class' => 'btn btn-default', 'style' => 'margin-left: 15px']) !!}
         </div>
 
 
