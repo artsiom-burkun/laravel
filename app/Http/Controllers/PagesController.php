@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Mail;
+use Session;
 use App\Post;
+
 
 class PagesController extends Controller
 {
@@ -28,5 +32,36 @@ class PagesController extends Controller
 
     public function getContact() {
         return view('pages.kontakty');
+    }
+
+    public function postContact(Request $request) {
+
+        // validate
+        $this ->validate($request, array (
+            "name" => 'required',
+            "email" => 'required|email',
+            "message" => 'required',
+        ));
+
+        $data = [
+            'email' => $request->email,
+            'subject' => $request->name,
+            'bodymessage' => $request->message
+        ];
+
+        Mail::send('auth.emails.password', $data, function($message) use ($data) {
+            $message->from($data['email']);
+            $message->to('rty_111@mail.ru');
+            $message->subject($data['subject']);
+
+        } );
+
+
+
+
+
+        //return
+        Session::flash('success', 'Сообщение успешно отправлено');
+        return back()->withInput();
     }
 }
