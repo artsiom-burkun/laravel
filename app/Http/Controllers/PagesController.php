@@ -45,13 +45,14 @@ class PagesController extends Controller
 
         $data = [
             'email' => $request->email,
-            'subject' => $request->name,
+            'name' => $request->name,
+            'subject' => 'Сообщение с сайта',
             'bodymessage' => $request->message
         ];
 
-        Mail::send('auth.emails.password', $data, function($message) use ($data) {
+        Mail::send('emails.kontakty', $data, function($message) use ($data) {
             $message->from($data['email']);
-            $message->to('rty_111@mail.ru');
+            $message->to('artsiom.burkun@gmail.com');
             $message->subject($data['subject']);
 
         } );
