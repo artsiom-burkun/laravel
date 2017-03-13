@@ -43,4 +43,7 @@
 
           // Теги
           Route::resource('tags', 'TagController', ['except' => ['create']]);
+
+          // Комментарии
+          Route::post('comments/{post_id}', ['uses' => 'CommentsController@store', 'as' => 'comments.store' ]);
       });
