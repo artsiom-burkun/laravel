@@ -41,7 +41,7 @@
                          <tr>
                              <th>{{ $post->id }}</th>
                              <td>{{ $post->title }}</td>
-                             <td>{{ $post->body}}  {{ strlen($post->body) > 50 ? "..." : "" }}</td>
+                             <td>{!!   substr($post->body, 0 , 500)  !!}  {{ strlen($post->body) > 50 ? "..." : "" }}</td>
                              <td>{{ $post->created_at }}</td>
                              <td>
                                  {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}

@@ -33,7 +33,7 @@
 
           //Блог
           Route::get('/blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
-          Route::get('/blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle']);
+          Route::get('/blog/{slug}.html', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle']);
 
           // Блог как администратор
           Route::resource('posts', 'PostController');
