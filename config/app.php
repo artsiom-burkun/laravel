@@ -172,6 +172,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
+        Mews\Purifier\PurifierServiceProvider::class,
 
 
         /*
@@ -235,6 +236,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'LocalizedCarbon' => Laravelrus\LocalizedCarbon\LocalizedCarbon::class,
         'DiffFormatter'   => Laravelrus\LocalizedCarbon\DiffFactoryFacade::class,
+        'Purifier' => Mews\Purifier\Facades\Purifier::class,
     ],
 
 ];

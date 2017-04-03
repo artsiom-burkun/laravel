@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
 use App\Tag;
+use Purifier;
 use Session;
 
 class PostController extends Controller
@@ -63,7 +64,7 @@ class PostController extends Controller
 
         $post = new Post;
         $post->title = $request->title;
-        $post->body = $request->body;
+        $post->body = Purifier::clean($request->body);
         $post->category_id = $request->category_id;
         ($request->slug == '') ? $post->slug = str_slug($request->title) : $post->slug = $request->slug;
 
@@ -143,7 +144,7 @@ class PostController extends Controller
         //сохраним данные
         $post = Post::find($id);
         $post->title = $request->input('title');
-        $post->body = $request->input('body');
+        $post->body = Purifier::clean($request->input('body'));
         $post->category_id = $request->input('category_id');
 
         ($request->slug == '') ? $post->slug = str_slug($request->title) : $post->slug = $request->slug;

@@ -14,12 +14,12 @@
 @section('scripts')
     <script src="/js/parsley.min.js"></script>
     <script src="/js/select2.min.js"></script>
-    <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script src="/js/tinymce/tinymce.min.js"></script>
 
     <script>
         tinymce.init({
             selector: 'textarea',
-            height: 500,
+            height: 350,
             menubar: false,
             plugins: [
                 'advlist autolink lists link image charmap print preview anchor',
@@ -27,7 +27,7 @@
                 'insertdatetime media table contextmenu paste code'
             ],
             toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-            content_css: '//www.tinymce.com/css/codepen.min.css'
+            content_css: '/js/tinymce/themes/modern/theme.min.js'
         });
     </script>
 

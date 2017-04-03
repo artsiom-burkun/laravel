@@ -11,7 +11,8 @@
         "barryvdh/laravel-ide-helper": "^2.2",
         "barryvdh/laravel-debugbar": "^2.3",
         "doctrine/dbal": "^2.5",
-        "laravelrus/localized-carbon": "dev-master"
+        "laravelrus/localized-carbon": "dev-master",
+        "mews/purifier": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
