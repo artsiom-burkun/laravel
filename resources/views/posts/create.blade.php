@@ -40,7 +40,7 @@
        <div class="col-md-8 col-md-offset-2">
            <h1>Создать новую запись</h1>
                <hr>
-           {!! Form::open(['route' => 'posts.store', 'data-parsley-validate']) !!}
+           {!! Form::open(['route' => 'posts.store', 'data-parsley-validate', 'files' => true]) !!}
                 {{ Form::label('title', 'Заголовок:') }}
                 {{ Form::text('title', null, array('class' => 'form-control', 'required' => '')) }}
 <br/>
@@ -63,6 +63,10 @@
                    <option value="{{ $tag->id }}"> {{ $tag->name }} </option>
                @endforeach
            </select>
+           <br/>
+           <br/>
+           {{ Form::label('featured_image', 'Загрузите изображение:') }}
+           {{ Form::file('featured_image') }}
            <br/>
            <br/>
 

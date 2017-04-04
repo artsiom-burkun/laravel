@@ -27,7 +27,9 @@
             <hr>
 
 
-            <div class="content">{!! $post->body !!}</div>
+            <div class="content">
+                <img src="/images/{{ $post->image }}"/>
+                {!! $post->body !!}</div>
 
             <hr>
             <h3>Комментарии ({{ count($post->comments) }})</h3>

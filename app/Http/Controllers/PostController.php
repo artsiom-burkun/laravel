@@ -8,6 +8,7 @@ use App\Category;
 use App\Tag;
 use Purifier;
 use Session;
+use Image;
 
 class PostController extends Controller
 {
@@ -67,6 +68,17 @@ class PostController extends Controller
         $post->body = Purifier::clean($request->body);
         $post->category_id = $request->category_id;
         ($request->slug == '') ? $post->slug = str_slug($request->title) : $post->slug = $request->slug;
+
+        if ($request->hasFile('featured_image')) {
+            $image = $request->file('featured_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            Image::make($image)->resize(800, 400)->save($location);
+
+            $post->image = $filename;
+        }
+
+
 
         $post -> save();
 
